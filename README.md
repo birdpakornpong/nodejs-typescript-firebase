@@ -1,3 +1,7 @@
+*** Run Project ***
+1. terminal -> folder -> tsc -w
+2. terminal -> cd dist -> nodemon .
+
 *** Create Project ***
 1. npm init -y (termonel สร้าง package.json)
 2. npm i -S koa koa-bodyparser koa-json koa-logger koa-router
