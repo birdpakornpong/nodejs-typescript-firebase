@@ -27,6 +27,7 @@ const router = new koa_router_1.default();
 const config = {
     apiKey: "AIzaSyCHHZAbbUZGafCPw7Q-54ixk2p2X5qNmec",
     authDomain: "fir-realtime-4c62d.firebaseapp.com",
+    databaseURL: "https://fir-realtime-4c62d-default-rtdb.firebaseio.com",
     projectId: "fir-realtime-4c62d",
     storageBucket: "fir-realtime-4c62d.appspot.com",
     messagingSenderId: "434097444382",
@@ -48,13 +49,22 @@ app.use(koa_logger_1.default());
 // function add to collection in firebase
 function addUser() {
     return __awaiter(this, void 0, void 0, function* () {
-        db.collection("user").add({ data: ["bird test add data"] });
+        db.collection("productAddToCart").add({
+            barcode: "12345678910",
+            price: 9000,
+            createdAt: new Date(),
+            displayName: "bird",
+            isOnePrice: false,
+            quantity: 30,
+            sapProductId: "12345678910",
+            selectedAddress: "birds",
+        });
     });
 }
 // api test add data to firebase firestore
 router.get("/firebase", (ctx) => __awaiter(void 0, void 0, void 0, function* () {
     yield addUser();
-    ctx.body = { msg: "test add data to firebase" };
+    ctx.body = { msg: "test add data to firebase2" };
 }));
 // api test get with koa
 router.get("/", (ctx) => {
@@ -78,8 +88,16 @@ router.post("/test-post-interface", (ctx, next) => __awaiter(void 0, void 0, voi
     ctx.body = { name: data.name };
     yield next();
 }));
+const verhicelPerson = [
+    { v: "car", name: "bird" },
+    { v: "bike", name: "pang" },
+    { v: "airplane", name: "meow" },
+];
+router.get("/verhicle", (ctx) => __awaiter(void 0, void 0, void 0, function* () {
+    ctx.body = verhicelPerson;
+}));
 // Routes
 app.use(router.routes()).use(router.allowedMethods());
-app.listen(3000, () => {
-    console.log("port start localhost:3000");
+app.listen(5000, () => {
+    console.log("port start localhost:6666");
 });
